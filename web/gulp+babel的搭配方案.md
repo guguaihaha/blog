@@ -28,7 +28,7 @@ yarn add gulp-babel --dev
 ```
 
 到这里就可以运行了吗？新版本的gulp-babel的确生效了，不过建议还是要配置[.babelrc](https://www.babeljs.cn/docs/usage/babelrc)的文件并开启[插件]()
-最新版本的babel都会集中安装大部分常用依赖在 `node_modules/@babel` 目录下
+最新版本的babel都会集中安装大部分常用依赖在 `node_modules/@babel` 目录下,以下为`.babelrc`的配置
 
 ```json
 {
@@ -52,6 +52,10 @@ yarn add gulp-babel --dev
   ]
 }
 ```
+
+---
+### 解释：
+
 > 以上代码中`loose`为Babel的插件模式
 
 + 尽可能符合ECMASCRIPT6语义的NORMAL模式，默认是此项
@@ -194,3 +198,49 @@ require('./modules/es6.promise');
 
 `@babel/preset-env`默认支持语法转化，需要开启`useBuiltIns`配置才能转化API和实例方法。
 此外，不管是写项目还是写Library/Module，使用`@babel/preset-env`并正确配置就行。多看英文原稿说明，中文总结看看就好，别太当真。
+
+
+
+
+---
+
+
+
+基于以上配置，可以说就能使用babel了，如果内嵌了import和require的模块化加载方案，可以结合打包工具webpack、rollup、browserify等
+这里主要说一下browserify的结合使用方案。
+
+```text
+yarn add gulp-browserify
+```
+然后引入到入口文件
+
+```javascript
+   var browserify       = require('gulp-browserify');
+   var gulp = require("gulp");
+   var sourcemaps = require("gulp-sourcemaps");
+   var babel = require("gulp-babel");
+   var concat = require("gulp-concat");
+  
+  var gulp = require("gulp");
+       var sourcemaps = require("gulp-sourcemaps");
+       var babel = require("gulp-babel");
+       var concat = require("gulp-concat");
+       
+       gulp.task("default", function () {
+         return gulp.src("src/**/*.js")
+           .pipe(sourcemaps.init())
+           .pipe(babel())
+           .pipe(browserify({
+              insertGlobals : true,
+           }))
+           .pipe(concat("all.js"))
+           .pipe(sourcemaps.write("."))
+           .pipe(gulp.dest("dist"));
+       });
+```
+关于[gulp-browserify](https://github.com/deepak1556/gulp-browserify)查看语法API即可，
+到此就可以进行babel转换和打包同时进行，要注意browserify需要使用commonJs格式，如果使用import的方式引入，可以通过.babelrc中添加插件
+`@babel/plugin-transform-modules-commonjs`来解决，至此全部搞定。
+
+如果有相关问题请一起[讨论](https://github.com/guguaihaha/blog/issues/2)
+
