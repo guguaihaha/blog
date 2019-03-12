@@ -16,7 +16,7 @@ console.log(message.length); // 12
 
 以上就是普通的赋值操作，就是个普通的字符串
 
-如果想要引入特殊符号，包含`\``的话请使用`\`来转义即可
+如果想要引入特殊符号的话请使用`\`来转义即可
 
 ```javascript
 let message = `\`Hello\` world!`;
