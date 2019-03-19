@@ -23,11 +23,11 @@
 
 > 进入主界面，然后如下图，点击右上角一键加油
 
-![主界面](http://www.zhangjinglin.cn/images/1.png)
+<img src="http://www.zhangjinglin.cn/images/1.png" style="width:100%" />
 
 > 之后会进入以下加油主界面，可以清晰看到所有的信息，车牌类型，油耗，车身颜色等。
 
-![加油钱包](http://www.zhangjinglin.cn/images/2.png)
+<img src="http://www.zhangjinglin.cn/images/2.png" style="width:100%" />
 
 > 然后确认金额是足额“一般是大于500元即可”，不够的话，联系我“张京林”，我进行充值。然后重新进入主界面即可看到金额正常。
 
@@ -35,7 +35,7 @@
 
 不在附近就无法使用，所以可以点击导航到附近加油站再次点击加油，即可。
 
-![加油钱包](http://www.zhangjinglin.cn/images/3.png)
+<img src="http://www.zhangjinglin.cn/images/3.png" style="width:100%" />
 
 这里需要注意的是：`加油` 操作需要确认自己选的车型和加油金额，具体界面暂时无法提供图片。因为我没在加油站附近。
 
@@ -45,15 +45,16 @@
 
 完全加完油不要着急离开加油站。将车停到一旁，确认优惠金额，再次进入主界面
 
-![主界面](http://www.zhangjinglin.cn/images/2.png)
+<img src="http://www.zhangjinglin.cn/images/2.png" style="width:100%" />
 
 看到最后一项有个加油记录。那里面可以做加油未确认支付的操作，也可以清晰的查看自己加油的优惠信息
 
-![历史记录列表](http://www.zhangjinglin.cn/images/4.png)
+<img src="http://www.zhangjinglin.cn/images/4.png" style="width:100%" />
 
 一般顶部最新一条就是自己的加油记录。
 
 点击列表一项进入详情页面即可查看到具体优惠金额
 
-![历史记录详情](http://www.zhangjinglin.cn/images/5.png)
+<img src="http://www.zhangjinglin.cn/images/5.png" style="width:100%" />
+
 
