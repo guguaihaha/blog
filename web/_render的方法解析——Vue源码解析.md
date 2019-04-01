@@ -144,7 +144,7 @@ vm.$createElement = (a, b, c, d) => createElement(vm, a, b, c, d, true)
 
 >> 区别就在于，前者是给有编译环境下使用的render方法，后者是给手写render方法使用的
 
-这篇主要介绍到这里。
+这篇主要介绍到这里。关于createElement参数可以查看官网[createElemnt](https://cn.vuejs.org/v2/guide/render-function.html#%E5%AE%8C%E6%95%B4%E7%A4%BA%E4%BE%8B)
 
 ### 总结
 
