@@ -87,4 +87,4 @@ export default class VNode {
 呃，看似代码量很多，但是内容和实际使用与真实DOM还是少很多的。因为常用的就那么几个，你全定义了也没啥作用啊。不过Vue的Virtual Dom是借鉴了  [snabbdom](https://github.com/snabbdom/snabbdom)。这个大家可以简单看一下，在这基础上
 Vue还做了很多改进和适配。
 
-对了，这就是virtual Dom的核心模块Vnode的代码片段，当然这还需要有一些`creat`、`update`、`patch`等方法。后续文章会有介绍。
+对了，这就是virtual Dom的核心模块Vnode的代码片段，当然这还需要有一些`create`、`update`、`patch`等方法。后续文章会有介绍。
