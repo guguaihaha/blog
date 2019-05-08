@@ -35,6 +35,7 @@ nextTick的原理解析——Vue源码分析
     }
 </script>
 ```
+***代码 1.1***
 
 > 那么以上的输出结果是？
 
@@ -141,6 +142,7 @@ export const nextTick = (function () {
   }
 })()
 ```
+***代码 1.2***
 
 还是个立即执行的函数，当然内部进行了是否支持`Promise`、`MutationObserver`和兜底方案`setTimeout`的集中`异步线程调用方式`支持测试，关于[异步线程调用方式](http://www.zhangjinglin.cn/blog/d37df4ef6d3bebce75e3cebbb62b65.html)请查阅相关原生Js文档
 
@@ -174,6 +176,8 @@ export function queueWatcher (watcher: Watcher) {
   }
 }
 ```
+***代码 1.3***
+
 看到了吧，就是等时机成熟的时候进行nextTick方法，输出所有相关watcher（user watcher、computed watcher、render watcher等）。
 
 > 那什么时候时机成熟呢？
@@ -192,6 +196,8 @@ export function queueWatcher (watcher: Watcher) {
     }
   }
 ```
+***代码 1.4***
+
 哦，看到了就知道了当依赖收集周期已经完成后执行更新的时候开始，那依赖收集何时结束，请查看触发watcher的`get`方法的具体代码。
 
 
