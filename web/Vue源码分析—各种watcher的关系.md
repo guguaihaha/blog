@@ -201,7 +201,7 @@ Vue.prototype.$watch = function (
 
 代码不容易直白表述，主要上原理图
 
-[原理图](http://www.zhangjinglin.cn/images/reactive.png)
+![原理图](http://www.zhangjinglin.cn/images/reactive.png)
 
 根据原理图就能知道各个watcher之间的联系了
 
@@ -211,11 +211,11 @@ Vue.prototype.$watch = function (
 
 首先是`user watcher`
 
-[user watcher](http://www.zhangjinglin.cn/images/userwatcher.png)
+![user watcher](http://www.zhangjinglin.cn/images/userwatcher.png)
 
 然后是 `computed watcher`
 
-[computed watcher](http://www.zhangjinglin.cn/images/computedwatcher.png)
+![computed watcher](http://www.zhangjinglin.cn/images/computedwatcher.png)
 
 
 
