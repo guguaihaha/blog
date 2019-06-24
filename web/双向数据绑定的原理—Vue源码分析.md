@@ -181,6 +181,6 @@ function defineReactive (
 
 分析了这么多，简单的表述就是以上`依赖收集`和`派发更新`的过程，这也就达到了更改数据后会触发其他订阅数据的联动。关于更多定于[数据watcher](http://www.zhangjinglin.cn/blog/d3cd78dbdf7ad7ae38d3bf38ded8ad95.html)请查看这篇文章
 
-当然这是数据驱动的方式，那么双向数据绑定还要涉及到事件触发方法，方法处理数据。所以这就达到了view => Modal 的过程。
+当然这是数据驱动的方式，那么双向数据绑定还要涉及到事件触发方法，方法处理数据。所以这就达到了view => Model 的过程。
 
-不过这里面我们经常看到的是关于`v-modal`的语法糖，我们一起来看[v-modal](http://www.zhangjinglin.cn/blog/d34df6d79dfcdb9efae75e36d78b62b657.html)的处理流程。同时也借助这个语法糖从源码角度来看看事件的注册机制和解析方式。
+不过这里面我们经常看到的是关于`v-model`的语法糖，我们一起来看[v-model](http://www.zhangjinglin.cn/blog/d34df6d79dfcdb9efae75e36d78b62b657.html)的处理流程。同时也借助这个语法糖从源码角度来看看事件的注册机制和解析方式。
