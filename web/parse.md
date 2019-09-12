@@ -869,7 +869,7 @@ return {
 
 ## 流程图
 
-<img src="https://www.zhangjinglin.cn/images/vue/parse.png" width='80%'>
+![blockimg](https://www.zhangjinglin.cn/images/vue/parse.png)
 
 ## 总结
 
