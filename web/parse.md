@@ -869,7 +869,7 @@ return {
 
 ## 流程图
 
-![blockimg](https://www.zhangjinglin.cn/images/vue/parse.png)
+![blockchain](https://www.zhangjinglin.cn/images/vue/parse.png "流程图")
 
 ## 总结
 
