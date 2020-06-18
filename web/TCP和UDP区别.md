@@ -45,11 +45,11 @@ TCP和UDP区别
   
   + UDP 、TCP 首部格式
   
-  [](https://www.zhangjinglin.cn/tcpudp/1.jpg)
+  ![](https://www.zhangjinglin.cn/tcpudp/1.jpg)
   
   UDP 首部字段只有 8 个字节，包括源端口、目的端口、长度、检验和。12 字节的伪首部是为了计算检验和临时添加的。
   
-  [](https://www.zhangjinglin.cn/tcpudp/2.jpg)
+  ![](https://www.zhangjinglin.cn/tcpudp/2.jpg)
   
   TCP 首部格式比 UDP 复杂。
   
@@ -105,7 +105,7 @@ TCP和UDP区别
   
   三次握手：
   
-  [](https://www.zhangjinglin.cn/tcpudp/3.jpg)
+  ![](https://www.zhangjinglin.cn/tcpudp/3.jpg)
   
   假设 A 为客户端，B 为服务器端。
   
@@ -144,7 +144,7 @@ TCP和UDP区别
   
   + TCP 的四次挥手（为什么四次？）
   
-  [](https://www.zhangjinglin.cn/tcpudp/4.jpg)
+  ![](https://www.zhangjinglin.cn/tcpudp/4.jpg)
   
       - 客户端发送一个 FIN 段，并包含一个希望接收者看到的自己当前的序列号 K. 同时还包含一个 ACK 表示确认对方最近一次发过来的数据。
       - 服务端将 K 值加 1 作为 ACK 序号值，表明收到了上一个包。这时上层的应用程序会被告知另一端发起了关闭操作，通常这将引起应用程序发起自己的关闭操作。
@@ -196,16 +196,16 @@ TCP和UDP区别
   
   第一种情况，接收端正常收到两个数据包，即没有发生拆包和粘包的现象。
   
-  [](https://www.zhangjinglin.cn/tcpudp/5.png)
+  ![](https://www.zhangjinglin.cn/tcpudp/5.png)
   
   第二种情况，接收端只收到一个数据包，但是这一个数据包中包含了发送端发送的两个数据包的信息，这种现象即为粘包。这种情况由于接收端不知道这两个数据包的界限，所以对于接收端来说很难处理。
   
-  [](https://www.zhangjinglin.cn/tcpudp/6.png)
+  ![](https://www.zhangjinglin.cn/tcpudp/6.png)
   
   第三种情况，这种情况有两种表现形式，如下图。接收端收到了两个数据包，但是这两个数据包要么是不完整的，要么就是多出来一块，这种情况即发生了拆包和粘包。这两种情况如果不加特殊处理，对于接收端同样是不好处理的。
   
-  [](https://www.zhangjinglin.cn/tcpudp/7.png)
-  [](https://www.zhangjinglin.cn/tcpudp/8.png)
+  ![](https://www.zhangjinglin.cn/tcpudp/7.png)
+  ![](https://www.zhangjinglin.cn/tcpudp/8.png)
   
   **为什么会发生 TCP 粘包、拆包？**
   
@@ -230,11 +230,11 @@ TCP和UDP区别
   一个报文段从发送再到接收到确认所经过的时间称为往返时间 RTT，加权平均往返时间 RTTs 计算如下：
   
  
-  [](https://www.zhangjinglin.cn/tcpudp/10.png)
+  ![](https://www.zhangjinglin.cn/tcpudp/10.png)
  
   其中，0 ≤ a ＜ 1，RTTs 随着 a 的增加更容易受到 RTT 的影响。超时时间 RTO 应该略大于 RTTs，TCP 使用的超时时间计算如下：
   
-  [](https://www.zhangjinglin.cn/tcpudp/11.png)
+  ![](https://www.zhangjinglin.cn/tcpudp/11.png)
   
   其中 RTTd 为偏差的加权平均值。 
   
@@ -246,7 +246,7 @@ TCP和UDP区别
   
   接收窗口只会对窗口内最后一个按序到达的字节进行确认，例如接收窗口已经收到的字节为 {31, 34, 35}，其中 {31} 按序到达，而 {34, 35} 就不是，因此只对字节 31 进行确认。发送方得到一个字节的确认之后，就知道这个字节之前的所有字节都已经被接收。
   
-  [](https://www.zhangjinglin.cn/tcpudp/12.jpg)
+  ![](https://www.zhangjinglin.cn/tcpudp/12.jpg)
   
   
   + TCP 流量控制
@@ -262,7 +262,7 @@ TCP和UDP区别
   
   如果网络出现拥塞，分组将会丢失，此时发送方会继续重传，从而导致网络拥塞程度更高。因此当出现拥塞时，应当控制发送方的速率。这一点和流量控制很像，但是出发点不同。流量控制是为了让接收方能来得及接收，而拥塞控制是为了降低整个网络的拥塞程度。
   
-  [](https://www.zhangjinglin.cn/tcpudp/13.jpg)
+  ![](https://www.zhangjinglin.cn/tcpudp/13.jpg)
   
   TCP 主要通过四个算法来进行拥塞控制：
   
@@ -275,7 +275,7 @@ TCP和UDP区别
       - 接收方有足够大的接收缓存，因此不会发生流量控制；
       - 虽然 TCP 的窗口基于字节，但是这里设窗口的大小单位为报文段。
       
-   [](https://www.zhangjinglin.cn/tcpudp/14.jpg)   
+   ![](https://www.zhangjinglin.cn/tcpudp/14.jpg)   
 
   
   **慢开始与拥塞避免**
@@ -296,7 +296,7 @@ TCP和UDP区别
   
   慢开始和快恢复的快慢指的是 cwnd 的设定值，而不是 cwnd 的增长速率。慢开始 cwnd 设定为 1，而快恢复 cwnd 设定为 ssthresh。
   
-  [](https://www.zhangjinglin.cn/tcpudp/15.png)
+  ![](https://www.zhangjinglin.cn/tcpudp/15.png)
   
   + 提供网络利用率
   
