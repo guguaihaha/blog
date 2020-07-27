@@ -394,3 +394,157 @@ interface Point3d extends Point {
 
 let point3d: Point3d = {x: 1, y: 2, z: 3};
 ```
+
+### 函数
+
+> 完整函数类型
+
+```typescript
+function add(x: number, y: number): number {
+    return x + y;
+}
+
+
+let myAdd: (x: number, y: number) => number =
+    function(x: number, y: number): number { return x + y; };
+```
+
+> 可选参数和默认参数
+
+```typescript
+function buildName(firstName: string, lastName?: string) {
+    if (lastName)
+        return firstName + " " + lastName;
+    else
+        return firstName;
+}
+
+let result1 = buildName("Bob");  // works correctly now
+let result2 = buildName("Bob", "Adams", "Sr.");  // error, too many parameters
+let result3 = buildName("Bob", "Adams");  // ah, just right
+```
+
+可选参数必须跟在必须参数后面。 如果上例我们想让first name是可选的，那么就必须调整它们的位置，把first name放在后面。
+
+在TypeScript里，我们也可以为参数提供一个默认值当用户没有传递这个参数或传递的值是undefined时。 它们叫做有默认初始化值的参数。 让我们修改上例，把last name的默认值设置为"Smith"。
+
+```typescript
+function buildName(firstName: string, lastName = "Smith") {
+    return firstName + " " + lastName;
+}
+
+let result1 = buildName("Bob");                  // works correctly now, returns "Bob Smith"
+let result2 = buildName("Bob", undefined);       // still works, also returns "Bob Smith"
+let result3 = buildName("Bob", "Adams", "Sr.");  // error, too many parameters
+let result4 = buildName("Bob", "Adams");         // ah, just right
+```
+
+### 泛型
+
+
+数组表示方法
+
+```typescript
+function loggingIdentity<T>(arg: T[]): T[] {
+    console.log(arg.length);  // Array has a .length, so no more error
+    return arg;
+}
+
+function loggingIdentity<T>(arg: Array<T>): Array<T> {
+    console.log(arg.length);  // Array has a .length, so no more error
+    return arg;
+}
+```
+
+以上两种都可以
+
+高级用法
+
+```typescript
+class BeeKeeper {
+    hasMask: boolean;
+}
+
+class ZooKeeper {
+    nametag: string;
+}
+
+class Animal {
+    numLegs: number;
+}
+
+class Bee extends Animal {
+    keeper: BeeKeeper;
+}
+
+class Lion extends Animal {
+    keeper: ZooKeeper;
+}
+
+function createInstance<A extends Animal>(c: new () => A): A {
+    return new c();
+}
+
+createInstance(Lion).keeper.nametag;  // typechecks!
+```
+
+### 模块
+
+> 导出
+
+任何声明（比如变量，函数，类，类型别名或接口）都能够通过添加export关键字来导出。
+
+```typescript
+export interface StringValidator {
+    isAcceptable(s: string): boolean;
+}
+
+export const numberRegexp = /^[0-9]+$/;
+
+export class ZipCodeValidator implements StringValidator {
+    isAcceptable(s: string) {
+        return s.length === 5 && numberRegexp.test(s);
+    }
+}
+```
+
+> export = 和 import = require()
+
+CommonJS和AMD的环境里都有一个exports变量，这个变量包含了一个模块的所有导出内容。
+
+CommonJS和AMD的exports都可以被赋值为一个对象, 这种情况下其作用就类似于 es6 语法里的默认导出，即 export default语法了。虽然作用相似，但是 export default 语法并不能兼容CommonJS和AMD的exports。
+
+为了支持CommonJS和AMD的exports, TypeScript提供了export =语法。
+
+export =语法定义一个模块的导出对象。 这里的对象一词指的是类，接口，命名空间，函数或枚举。
+
+若使用export =导出一个模块，则必须使用TypeScript的特定语法import module = require("module")来导入此模块。
+
+`ZipCodeValidator.ts`
+
+```typescript
+let numberRegexp = /^[0-9]+$/;
+class ZipCodeValidator {
+    isAcceptable(s: string) {
+        return s.length === 5 && numberRegexp.test(s);
+    }
+}
+export = ZipCodeValidator;
+
+```
+`Test.ts`
+
+```typescript
+import zip = require("./ZipCodeValidator");
+
+// Some samples to try
+let strings = ["Hello", "98052", "101"];
+
+// Validators to use
+let validator = new zip();
+
+// Show whether each string passed each validator
+strings.forEach(s => {
+  console.log(`"${ s }" - ${ validator.isAcceptable(s) ? "matches" : "does not match" }`);
+});
+```
