@@ -41,7 +41,7 @@ Lerna 中的两个主要命令是 lerna bootstrap 和 lerna publish。 bootstrap
 
 > 快速开始
 
-##### 安装和初始化
+## 安装和初始化
 
 ```text
     $ npm install lerna -g
@@ -81,7 +81,7 @@ lerna create
 lerna info
 ```
 
-##### 必要设置
+## 必要设置
 
 确保以下状态都是登录态
 
@@ -97,7 +97,7 @@ npm login
 # 输入username password 
 Logged in as gp0320 on https://registry.npmjs.org/. # succeed
 ```
-##### 必要设置
+## 必要设置
 
 > 默认是npm, 而且每个子package都有自己的node_modules，通过这样设置后，只有顶层有一个node_modules
 
@@ -120,7 +120,7 @@ lerna.json 文件加入
 "npmClient": "yarn",
 ```
 
-##### lerna的语法
+## lerna的语法
 
 > lerna create <name> [loc]
 
