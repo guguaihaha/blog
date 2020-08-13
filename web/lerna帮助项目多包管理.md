@@ -97,7 +97,7 @@ npm login
 # 输入username password 
 Logged in as gp0320 on https://registry.npmjs.org/. # succeed
 ```
-## 必要设置
+## 可选设置
 
 > 默认是npm, 而且每个子package都有自己的node_modules，通过这样设置后，只有顶层有一个node_modules
 
