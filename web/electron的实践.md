@@ -63,3 +63,78 @@ npm install --save-dev electron
 
 + 各种安全性检查，当然内容并不全面，不过一切都是基于内容是否信任，一般非系统内部的都不信任，所以导致很多渲染进程调用主进程的方法无法使用。具体参考[检查安全列表](https://www.electronjs.org/docs/tutorial/security#checklist-security-recommendations)
 
+
+> 添加初始化调试代码
+
+首先需要在主进程`main.js`中创建窗口，处理程序中的所有系统事件。默认是打开开发者工具的。
+
+```typescript
+const { app, BrowserWindow } = require('electron')
+
+function createWindow () {   
+  // 创建浏览器窗口
+  const win = new BrowserWindow({
+    width: 800,
+    height: 600,
+    webPreferences: {
+      nodeIntegration: true
+    }
+  })
+
+  // 并且为你的应用加载index.html
+  win.loadFile('index.html')
+
+  // 打开开发者工具
+  win.webContents.openDevTools()
+}
+
+// Electron会在初始化完成并且准备好创建浏览器窗口时调用这个方法
+// 部分 API 在 ready 事件触发后才能使用。
+app.whenReady().then(createWindow)
+
+// Quit when all windows are closed, except on macOS. There, it's common
+// for applications and their menu bar to stay active until the user quits
+// explicitly with Cmd + Q.
+app.on('window-all-closed', () => {
+  if (process.platform !== 'darwin') {
+    app.quit()
+  }
+})
+
+app.on('activate', () => {
+  // On macOS it's common to re-create a window in the app when the
+  // dock icon is clicked and there are no other windows open.
+  if (BrowserWindow.getAllWindows().length === 0) {
+    createWindow()
+  }
+})
+
+// 您可以把应用程序其他的流程写在在此文件中
+// 代码 也可以拆分成几个文件，然后用 require 导入。
+
+```
+
+其中`win.webContents.openDevTools()`是打开开发者工具，不方便就注释掉了即可，`win.loadFile('index.html')`是加载渲染进程，当然你也可以通过`open`等方式打开。
+
+我们来创建一个`index.html`的渲染进程
+
+```html
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Hello World!</title>
+    <!-- https://electronjs.org/docs/tutorial/security#csp-meta-tag -->
+    <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline';" />
+  </head>
+  <body>
+    <h1>Hello World!</h1>
+    We are using node <script>document.write(process.versions.node)</script>,
+    Chrome <script>document.write(process.versions.chrome)</script>,
+    and Electron <script>document.write(process.versions.electron)</script>.
+  </body>
+</html>
+```
+以上创建完毕后就可以启动命令`npm start`
+
+基础入门就是这么简单，下面将会逐一分享各种API调用技巧。
